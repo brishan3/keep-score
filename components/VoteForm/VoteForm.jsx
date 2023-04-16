@@ -4,10 +4,10 @@ import _ from "lodash";
 
 export default function VoteForm() {
   const router = useRouter();
+
   const [teams, setTeams] = useState([]);
   const [currentTeamIndex, setCurrentTeamIndex] = useState(0);
   const [currentMemberIndex, setCurrentMemberIndex] = useState(0);
-  const [showResults, setShowResults] = useState(false);
 
   useEffect(() => {
     const savedTeams = JSON.parse(localStorage.getItem("teams"));
@@ -35,13 +35,15 @@ export default function VoteForm() {
     
 
     categories.forEach( category => {
-      event.target.elements[category].forEach((el, i) => {
-        if(i == currentTeamIndex) {
-          let newVal = parseFloat(teams[i][category]) + parseFloat(el.value)
-          newTeams[i][category] = newVal;
+      event.target.elements[category].forEach((input, teamIndex) => {
+        if(teamIndex == currentTeamIndex) {
+          // let numTeamMembers = teams[teamIndex].members.length;
+          let ownVotePenaltyCoefficient = 1
+          let newCategoryTotal = parseFloat(teams[teamIndex][category]) + parseFloat(input.value)*(ownVotePenaltyCoefficient)
+          newTeams[teamIndex][category] = newCategoryTotal;
         } else {
-          let newVal = parseFloat(teams[i][category]) + parseFloat(el.value)
-          newTeams[i][category] = newVal;
+          let newCategoryTotal = parseFloat(teams[teamIndex][category]) + parseFloat(input.value)
+          newTeams[teamIndex][category] = newCategoryTotal;
         }
       });
     })

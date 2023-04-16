@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
 export default function TeamForm() {
+  const router = useRouter();
+
   const [teams, setTeams] = useState([
     {
       name: "",
@@ -14,8 +16,6 @@ export default function TeamForm() {
       members: [""],
     },
   ]);
-
-  const router = useRouter();
 
   useEffect(() => {
     const savedTeams = JSON.parse(localStorage.getItem("teams"));
@@ -74,7 +74,6 @@ export default function TeamForm() {
     console.log(teams);
     localStorage.setItem("teams", JSON.stringify(teams));
     router.push("/vote")
-    // Do something with the teams data
   }
 
   function handleSave(event) {

@@ -29,10 +29,10 @@
     @apply focus:outline-none focus:ring-0;
   }
   li > a {
-    @apply text-orange-600 underline;
+    @apply text-blue-700 underline;
   }
   p > a {
-    @apply text-orange-600 underline;
+    @apply text-blue-700 underline;
   }
   ol,
   ul {
@@ -42,7 +42,7 @@
     @apply list-decimal;
   }
   ul {
-    @apply pl-8 list-square marker:text-orange-600;
+    @apply pl-8 list-square marker:text-blue-700;
   }
   ol ol,
   ol ul,

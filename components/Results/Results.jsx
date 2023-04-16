@@ -5,14 +5,10 @@ import classNames from "@/utils/classNames";
 
 export default function Results() {
   const router = useRouter();
+  
   const [teamResults, setTeamResults] = useState([]);
   const [topScores, setTopScores] = useState({creativity: 0, technicality: 0, usability: 0, robustness: 0, problemSolving: 0, overall: 0});
   const [totalNumMembers, setTotalNumMembers] = useState(0);
-  // const [bestCreativity, setBestCreativity] = useState(0);
-  // const [bestTechnicality, setBestTechnicality] = useState(0);
-  // const [bestUsability, setBestUsability] = useState(0);
-  // const [bestRobustness, setBestRobustness] = useState(0);
-  // const [bestProblemSolving, setBestProblemSolving] = useState(0);
 
   useEffect(() => {
     const savedTeamResults = JSON.parse(localStorage.getItem("teamResults"));
