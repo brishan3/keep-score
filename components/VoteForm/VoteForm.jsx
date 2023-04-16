@@ -81,7 +81,7 @@ export default function VoteForm() {
                 type="range"
                 min="1"
                 max="5"
-                defaultValue={5}
+                defaultValue={3}
               />
             </div>
             <div className="grid max-w-sm grid-cols-2">
@@ -91,7 +91,7 @@ export default function VoteForm() {
                 type="range"
                 min="1"
                 max="5"
-                defaultValue={5}
+                defaultValue={3}
               />
             </div>
             <div className="grid max-w-sm grid-cols-2">
@@ -101,7 +101,7 @@ export default function VoteForm() {
                 type="range"
                 min="1"
                 max="5"
-                defaultValue={5}
+                defaultValue={3}
 
               />
             </div>
@@ -112,7 +112,7 @@ export default function VoteForm() {
                 type="range"
                 min="1"
                 max="5"
-                defaultValue={5}
+                defaultValue={3}
               />
             </div>
             <div className="grid max-w-sm grid-cols-2">
@@ -122,14 +122,14 @@ export default function VoteForm() {
                 type="range"
                 min="1"
                 max="5"
-                defaultValue={5}
+                defaultValue={3}
               />
             </div>
           </div>
         ))}
         <div className="flex justify-end mt-4">
           <button
-            className="rounded-lg bg-blue-700 px-2 py-1 font-semibold text-gray-50"
+            className="rounded-lg bg-blue-700 px-2 py-1 font-semibold text-gray-50 hover:bg-blue-800"
             type="submit"
           >
             Submit

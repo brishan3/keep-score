@@ -142,7 +142,7 @@ export default function TeamForm() {
               {memberIndex > 0 && (
                 <button
                   type="button"
-                  className="mt-2 rounded-lg bg-red-600 px-2 py-1 text-gray-50"
+                  className="mt-2 rounded-lg bg-red-600 px-2 py-1 text-gray-50 hover:bg-red-700"
                   onClick={() => handleRemoveMember(teamIndex, memberIndex)}
                 >
                   ^ Remove Member
@@ -153,7 +153,7 @@ export default function TeamForm() {
           <div className="mt-4 flex items-center justify-between">
             <button
               type="button"
-              className="rounded-lg bg-gray-100 px-2 py-1"
+              className="rounded-lg bg-gray-100 px-2 py-1 hover:bg-gray-50"
               onClick={() => handleAddMember(teamIndex)}
             >
               + Add Member
@@ -161,7 +161,7 @@ export default function TeamForm() {
             {teamIndex > 0 && (
               <button
                 type="button"
-                className="rounded-lg bg-red-600 px-2 py-1 text-gray-50"
+                className="rounded-lg bg-red-600 px-2 py-1 text-gray-50 hover:bg-red-700"
                 onClick={() => handleRemoveTeam(teamIndex)}
               >
                 Remove Team
@@ -181,20 +181,20 @@ export default function TeamForm() {
         <button
           type="button"
           onClick={handleClear}
-          className="rounded-lg bg-red-600 px-4 py-1 font-semibold text-gray-50"
+          className="rounded-lg bg-red-600 px-4 py-1 font-semibold text-gray-50 hover:bg-red-700"
         >
           Clear
         </button>
         <button
           type="button"
           onClick={handleSave}
-          className="rounded-lg bg-green-700 px-4 py-1 font-semibold text-gray-50"
+          className="rounded-lg bg-green-700 px-4 py-1 font-semibold text-gray-50 hover:bg-green-800"
         >
           Save
         </button>
         <button
           type="submit"
-          className="rounded-lg bg-blue-700 px-2 py-1 font-semibold text-gray-50"
+          className="rounded-lg bg-blue-700 px-2 py-1 font-semibold text-gray-50 hover:bg-blue-800"
         >
           Submit
         </button>
