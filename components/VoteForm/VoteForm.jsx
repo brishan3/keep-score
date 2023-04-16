@@ -1,11 +1,13 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import _ from "lodash";
 
 export default function VoteForm() {
   const router = useRouter();
   const [teams, setTeams] = useState([]);
   const [currentTeamIndex, setCurrentTeamIndex] = useState(0);
   const [currentMemberIndex, setCurrentMemberIndex] = useState(0);
+  const [showResults, setShowResults] = useState(false);
 
   useEffect(() => {
     const savedTeams = JSON.parse(localStorage.getItem("teams"));
@@ -18,6 +20,7 @@ export default function VoteForm() {
 
   function handleVoteSubmit(event) {
     event.preventDefault();
+    console.log("Teams:", teams)
     const categories = [
       "creativity",
       "technicality",
@@ -26,23 +29,37 @@ export default function VoteForm() {
       "problemSolving",
     ];
 
-    let newTeams = [...teams];
+    let newTeams = _.cloneDeep(teams).map((team) => {
+      return { ...team };
+    });
+    
 
     categories.forEach( category => {
       event.target.elements[category].forEach((el, i) => {
-        let newVal = parseInt(newTeams[i][category]) + parseInt(el.value)
-        newTeams[i][category] += newVal;
+        if(i == currentTeamIndex) {
+          let newVal = parseFloat(teams[i][category]) + parseFloat(el.value)
+          newTeams[i][category] = newVal;
+        } else {
+          let newVal = parseFloat(teams[i][category]) + parseFloat(el.value)
+          newTeams[i][category] = newVal;
+        }
       });
     })
 
-    console.log(teams)
-    console.log(event.target.elements.creativity[0].value);
+    console.log("newTeams", newTeams)
+    setTeams(newTeams)
+
+    event.target.reset()
+    window.scrollTo({ top: 120, behavior: 'smooth' });
 
     if(currentMemberIndex + 1 < teams[currentTeamIndex].members.length) {
       setCurrentMemberIndex(currentMemberIndex + 1)
     } else if (currentTeamIndex + 1 < teams.length) {
       setCurrentTeamIndex(currentTeamIndex + 1)
       setCurrentMemberIndex(0)
+    } else {
+      localStorage.setItem("teamResults", JSON.stringify(newTeams));
+      router.push("/results")
     }
   }
 
@@ -55,7 +72,7 @@ export default function VoteForm() {
       )}
       <form onSubmit={handleVoteSubmit}>
         {teams.map((team, i) => (
-          <div key={i}>
+          <div className="max-w-sm mx-auto" key={i}>
             <h3 className="mb-0 mt-2">{team.name}</h3>
             <div className="grid max-w-sm grid-cols-2">
               <label htmlFor="creativity">Creativity:</label>
@@ -64,7 +81,7 @@ export default function VoteForm() {
                 type="range"
                 min="1"
                 max="5"
-                defaultValue={1}
+                defaultValue={5}
               />
             </div>
             <div className="grid max-w-sm grid-cols-2">
@@ -74,7 +91,7 @@ export default function VoteForm() {
                 type="range"
                 min="1"
                 max="5"
-                defaultValue={1}
+                defaultValue={5}
               />
             </div>
             <div className="grid max-w-sm grid-cols-2">
@@ -84,7 +101,7 @@ export default function VoteForm() {
                 type="range"
                 min="1"
                 max="5"
-                defaultValue={1}
+                defaultValue={5}
 
               />
             </div>
@@ -95,7 +112,7 @@ export default function VoteForm() {
                 type="range"
                 min="1"
                 max="5"
-                defaultValue={1}
+                defaultValue={5}
               />
             </div>
             <div className="grid max-w-sm grid-cols-2">
@@ -105,7 +122,7 @@ export default function VoteForm() {
                 type="range"
                 min="1"
                 max="5"
-                defaultValue={1}
+                defaultValue={5}
               />
             </div>
           </div>

@@ -74,7 +74,7 @@
     content: none;
   }
   hr {
-    @apply my-4;
+    @apply my-2;
   }
 }
 
