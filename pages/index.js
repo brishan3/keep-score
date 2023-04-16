@@ -1,5 +1,4 @@
 import TeamForm from '@/components/TeamForm/TeamForm';
-import Image from 'next/image';
 
 export default function Home() {
   return (
