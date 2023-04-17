@@ -117,12 +117,7 @@ export default function Results() {
         overall: highestOverallScore,
       });
     }
-    // return () => {
-    //   second
-    // }
   }, [teamResults]);
-
-  console.log();
 
   return (
     <div className="text-gray-50">
@@ -237,18 +232,6 @@ export default function Results() {
             </div>
           ))}
       </div>
-      {/* {bestOverall && 
-        <div className="mt-6">
-          <h2 className="text-center">
-            Best Overall
-          </h2>
-          <hr/>
-          <div className="grid max-w-sm grid-cols-2 mx-auto text-center">
-            <h5>{bestOverall.name}</h5>
-            <p>{bestOverall.score}</p>
-          </div>
-        </div>
-      } */}
     </div>
   );
 }
