@@ -132,7 +132,7 @@ export default function TeamForm() {
                 type="text"
                 className="rounded-lg text-gray-900"
                 value={team.name}
-                placeholder="Enter team name here..."
+                placeholder="Enter team name..."
                 onChange={(event) =>
                   handleTeamNameChange(teamIndex, event.target.value)
                 }
@@ -148,7 +148,7 @@ export default function TeamForm() {
                   type="text"
                   className="w-[12.5rem] rounded-lg text-gray-900"
                   value={member}
-                  placeholder="Enter member name here..."
+                  placeholder="Enter member name..."
                   onChange={(event) =>
                     handleMemberNameChange(
                       teamIndex,
