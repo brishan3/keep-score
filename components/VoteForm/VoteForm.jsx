@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import _ from "lodash";
+import classNames from "@/utils/classNames";
 
 export default function VoteForm() {
   const router = useRouter();
@@ -37,12 +38,12 @@ export default function VoteForm() {
     categories.forEach( category => {
       event.target.elements[category].forEach((input, teamIndex) => {
         if(teamIndex == currentTeamIndex) {
-          // let numTeamMembers = teams[teamIndex].members.length;
-          let ownVotePenaltyCoefficient = 1
-          let newCategoryTotal = parseFloat(teams[teamIndex][category]) + parseFloat(input.value)*(ownVotePenaltyCoefficient)
+          let numTeamMembers = teams[teamIndex].members.length;
+          let ownVotePenaltyCoefficient = 0;
+          let newCategoryTotal = parseFloat(teams[teamIndex][category]) + parseFloat(input.value)*(ownVotePenaltyCoefficient);
           newTeams[teamIndex][category] = newCategoryTotal;
         } else {
-          let newCategoryTotal = parseFloat(teams[teamIndex][category]) + parseFloat(input.value)
+          let newCategoryTotal = parseFloat(teams[teamIndex][category]) + parseFloat(input.value);
           newTeams[teamIndex][category] = newCategoryTotal;
         }
       });
@@ -74,7 +75,7 @@ export default function VoteForm() {
       )}
       <form onSubmit={handleVoteSubmit}>
         {teams.map((team, i) => (
-          <div className="max-w-sm mx-auto" key={i}>
+          <div className={classNames("max-w-sm mx-auto", i == currentTeamIndex && "hidden")} key={i}>
             <h3 className="mb-0 mt-2">{team.name}</h3>
             <div className="grid max-w-sm grid-cols-2">
               <label htmlFor="creativity">Creativity:</label>

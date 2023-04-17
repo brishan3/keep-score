@@ -15,7 +15,18 @@ export default function TeamForm() {
       problemSolving: 0,
       members: [""],
     },
+    {
+      name: "",
+      creativity: 0,
+      technicality: 0,
+      usability: 0,
+      robustness: 0,
+      problemSolving: 0,
+      members: [""],
+    },
   ]);
+
+  const [formError, setFormError] = useState(false);
 
   useEffect(() => {
     const savedTeams = JSON.parse(localStorage.getItem("teams"));
@@ -37,6 +48,7 @@ export default function TeamForm() {
   }
 
   function handleAddTeam() {
+    setFormError(false);
     setTeams([
       ...teams,
       {
@@ -54,6 +66,9 @@ export default function TeamForm() {
   function handleRemoveTeam(index) {
     const newTeams = [...teams];
     newTeams.splice(index, 1);
+    if(newTeams.length < 2) {
+      setFormError(true)
+    }
     setTeams(newTeams);
   }
 
@@ -73,7 +88,12 @@ export default function TeamForm() {
     event.preventDefault();
     console.log(teams);
     localStorage.setItem("teams", JSON.stringify(teams));
-    router.push("/vote")
+    if(teams.length > 2) {
+      setFormError(false)
+      router.push("/vote")
+    } else {
+      setFormError(true)
+    }
   }
 
   function handleSave(event) {
@@ -120,7 +140,7 @@ export default function TeamForm() {
             </label>
           </div>
           {team.members.map((member, memberIndex) => (
-            <div className="my-2 pl-2" key={memberIndex}>
+            <div className="my-2 pl-4" key={memberIndex}>
               <label className="flex items-center justify-between text-gray-50">
                 Member Name:
                 <input
@@ -169,6 +189,9 @@ export default function TeamForm() {
           </div>
         </div>
       ))}
+      <div className="mt-4 text-center">
+        <span className={classNames("font-bold text-red-300 opacity-0 transition-all", formError && "opacity-100")}>*You need more than 1 team to continue*</span>
+      </div>
       <div className="mt-6 flex w-full justify-between">
         <button
           type="button"
